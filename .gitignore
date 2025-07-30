@@ -1,0 +1,13 @@
+# Binaries
+bin/
+
+# Go
+*.test
+*.out
+
+# IDEs
+.vscode/
+.idea/
+
+# Logs
+*.log
