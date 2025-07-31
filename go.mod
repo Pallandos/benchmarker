@@ -5,6 +5,7 @@ go 1.24.1
 require (
 	github.com/docker/docker v25.0.3+incompatible
 	github.com/joho/godotenv v1.5.1
+	github.com/sirupsen/logrus v1.9.3
 )
 
 require (
