@@ -12,7 +12,7 @@ type AppConfig struct {
 	StackName       string        `env:"STACK_NAME"`
 	LogPath         string        `env:"LOG_PATH"`
 	MonitorInterval time.Duration `env:"MONITOR_INTERVAL"`
-	SampleDuration  time.Duration `env:"SAMPLE_DURATION"`
+	MonitorDuration time.Duration `env:"MONITOR_DURATION"`
 }
 
 // LoadConfig loads the application configuration from a .env file
@@ -35,10 +35,10 @@ func LoadConfig(path string) (*AppConfig, error) {
 		}
 	}
 
-	config.SampleDuration = 60 * time.Second
-	if duration := os.Getenv("SAMPLE_DURATION"); duration != "" {
+	config.MonitorDuration = 60 * time.Second
+	if duration := os.Getenv("MONITOR_DURATION"); duration != "" {
 		if d, err := time.ParseDuration(duration); err == nil {
-			config.SampleDuration = d
+			config.MonitorDuration = d
 		}
 	}
 
