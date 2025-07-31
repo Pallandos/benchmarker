@@ -7,7 +7,7 @@ Benchmarker is a real-time monitoring tool designed to track network bandwidth a
 - **Real-time Network Monitoring**: Continuously monitors network statistics (RX/TX bytes and packets) for Docker containers
 - **Docker Stack Integration**: Automatically discovers and monitors containers within a specific Docker Compose project or Docker Swarm stack
 - **Configurable Monitoring**: Customizable monitoring intervals and duration
-- **Logging**: Comprehensive logging 
+- **Structured Logging**: Comprehensive logging with logrus structured format for easy parsing and analysis 
 - **Graceful Shutdown**: Supports both manual interruption (Ctrl+C) and automatic timeout-based shutdown
 - **Bandwidth Calculation**: Real-time calculation of bytes/packets per second with period tracking
 
@@ -112,19 +112,9 @@ make run
 
 ### Example Output
 
-```json
-{
-  "container_id": "a1b2c3d4e5f6",
-  "container_name": "bitcoin-node-1",
-  "rx_bytes_per_sec": 1024.5,
-  "tx_bytes_per_sec": 2048.3,
-  "rx_packets_per_sec": 12.0,
-  "tx_packets_per_sec": 15.0,
-  "period_ms": 1000,
-  "level": "info",
-  "msg": "Bandwidth metrics",
-  "time": "2025-01-31T10:30:45Z"
-}
+```
+time="2025-07-31T15:14:58+10:00" level=info msg="Bandwidth metrics" container_id=c32c1b7933ce container_name=bitcoin-network_local-1-1.1 period_ms=4000 rx_bytes_per_sec=98.49 rx_packets_per_sec=1.25 tx_bytes_per_sec=98.49 tx_packets_per_sec=1.25
+time="2025-07-31T15:14:58+10:00" level=info msg="Bandwidth metrics" container_id=824faed26908 container_name=bitcoin-network_local-1-8.1 period_ms=5005 rx_bytes_per_sec=0 rx_packets_per_sec=0 tx_bytes_per_sec=0 tx_packets_per_sec=0
 ```
 
 ### Monitoring Workflow
