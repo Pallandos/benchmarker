@@ -1,10 +1,9 @@
 package main
 
 import (
-	"fmt"
-
-	"github.com/pallandos/benchmarker/internal/config"
 	"github.com/pallandos/benchmarker/internal/containers"
+	"github.com/pallandos/benchmarker/internal/utils/config"
+	"github.com/pallandos/benchmarker/internal/utils/logger"
 )
 
 func main() {
@@ -14,11 +13,16 @@ func main() {
 	}
 
 	stackname := cfg.StackName
-
-	containers, err := containers.ListContainerInfos(stackname)
+	err = logger.InitLogger("benchmarker.log", cfg.LogPath)
 	if err != nil {
 		panic(err)
 	}
 
-	fmt.Printf("Found containers: %+v\n", containers)
+	containers, err := containers.ListContainerInfos(stackname)
+	if err != nil {
+		logger.Log.Error("Failed to list containers: ", err)
+		panic(err)
+	}
+
+	logger.Log.Info("Found containers: ", len(containers))
 }
