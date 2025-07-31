@@ -12,8 +12,7 @@ var Log *logrus.Logger
 func InitLogger(logFile string, logPath string) (*logrus.Logger, error) {
 	Log = logrus.New()
 	Log.SetFormatter(&logrus.TextFormatter{
-		ForceColors:   true,
-		FullTimestamp: true,
+		DisableColors: true,
 	})
 
 	// Construct the log file path
