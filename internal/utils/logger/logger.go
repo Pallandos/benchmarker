@@ -9,7 +9,7 @@ import (
 
 var Log *logrus.Logger
 
-func InitLogger(logFile string, logPath string) error {
+func InitLogger(logFile string, logPath string) (*logrus.Logger, error) {
 	Log = logrus.New()
 	Log.SetFormatter(&logrus.TextFormatter{
 		ForceColors:   true,
@@ -19,7 +19,7 @@ func InitLogger(logFile string, logPath string) error {
 	// Construct the log file path
 	if logPath != "" {
 		if err := os.MkdirAll(logPath, 0755); err != nil {
-			return err
+			return nil, err
 		}
 		logFile = logPath + "/" + logFile
 	}
@@ -27,9 +27,9 @@ func InitLogger(logFile string, logPath string) error {
 	// Output to both file and console
 	file, err := os.OpenFile(logFile, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0644)
 	if err != nil {
-		return err
+		return nil, err
 	}
 	Log.SetOutput(io.MultiWriter(os.Stdout, file))
 
-	return nil
+	return Log, nil
 }

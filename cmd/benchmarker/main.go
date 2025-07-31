@@ -13,16 +13,16 @@ func main() {
 	}
 
 	stackname := cfg.StackName
-	err = logger.InitLogger("benchmarker.log", cfg.LogPath)
+	mainlogger, err := logger.InitLogger("benchmarker.log", cfg.LogPath)
 	if err != nil {
 		panic(err)
 	}
 
 	containers, err := containers.ListContainerInfos(stackname)
 	if err != nil {
-		logger.Log.Error("Failed to list containers: ", err)
+		mainlogger.Error("Failed to list containers: ", err)
 		panic(err)
 	}
 
-	logger.Log.Info("Found containers: ", len(containers))
+	mainlogger.Info("Found containers: ", len(containers))
 }
