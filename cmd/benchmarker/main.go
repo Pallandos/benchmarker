@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/pallandos/benchmarker/internal/config"
+	"github.com/pallandos/benchmarker/internal/containers"
 )
 
 func main() {
@@ -12,5 +13,12 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Printf("Loaded configuration: %+v\n", *cfg)
+	stackname := cfg.StackName
+
+	containers, err := containers.ListContainerInfos(stackname)
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Printf("Found containers: %+v\n", containers)
 }
