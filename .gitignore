@@ -9,5 +9,10 @@ bin/
 .vscode/
 .idea/
 
+.github/
+
 # Logs
 *.log
+
+# Env
+*.env

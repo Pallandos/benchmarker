@@ -1,7 +1,7 @@
-module benchmarker
+module github.com/pallandos/benchmarker
 
 go 1.23.7
 
 toolchain go1.24.1
 
-require github.com/apple/pkl-go v0.11.0 // indirect
+require github.com/joho/godotenv v1.5.1
