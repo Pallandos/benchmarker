@@ -32,6 +32,9 @@ func ListContainerInfos(stackName string) ([]ContainerInfo, error) {
 			name := ""
 			if len(c.Names) > 0 {
 				name = c.Names[0]
+				if len(name) > 0 && name[0] == '/' {
+					name = name[1:]
+				}
 			}
 			infos = append(infos, ContainerInfo{ID: c.ID, Name: name})
 		}
